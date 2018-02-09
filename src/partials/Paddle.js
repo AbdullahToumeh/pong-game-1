@@ -7,7 +7,7 @@ export default class Paddle {
     this.height = height;
     this.x = x;
     this.y = y;
-    this.speed = 10;
+    this.speed = 14;
     this.score = 0;
 
     document.addEventListener('keydown', event => {
@@ -32,6 +32,15 @@ export default class Paddle {
   down() {
     this.y = Math.min((this.y + this.speed), (this.boardHeight-this.height));
 
+  }
+
+  //gets the overall coordinates of each paddle (for collision detection)
+  coordinates(x, y, width, height) {
+    let leftX = x;
+    let rightX = x + width;
+    let topY = y;
+    let bottomY = y + height;
+    return [leftX, rightX, topY, bottomY];
   }
 
   //rendering SVG images
