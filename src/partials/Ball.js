@@ -9,13 +9,7 @@ export default class Ball {
 
     this.reset();
 
-    // document.addEventListener('keydown', event => {
-    //   switch(event.key) {
-    //     case KEYS.spaceBar:
-    //       this.pause = !this.pause;
-    //       break;
-    //   }
-    // });
+    this.ping = new Audio('public/sounds/pong-01.wav');
   }
 
   reset() {
@@ -47,6 +41,7 @@ export default class Ball {
     //if it hits a wall, switch the position to be the negative of the current position
     if(hitTop || hitBottom) {
       this.vy = -this.vy;
+      //can change the height of paddle on hits
     }
     else if(hitLeft || hitRight) {
       this.vx = -this.vx;
@@ -63,7 +58,7 @@ export default class Ball {
       //less than or equal to the bottom, THEN flip the direction of the ball
       if ((this.x + this.radius >= leftX) && (this.x + this.radius <= rightX) && (this.y >= topY && this.y <= bottomY))  {
         this.vx = -this.vx;
-        //add sounds
+        this.ping.play();
       }
     }
     else {
@@ -72,7 +67,7 @@ export default class Ball {
 
       if ((this.x - this.radius <= rightX) && (this.x - this.radius >= leftX) && (this.y >= topY && this.y <= bottomY)) {
         this.vx = -this.vx;
-        //add sounds
+        this.ping.play();
       }
     }
   }
