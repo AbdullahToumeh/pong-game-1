@@ -3,6 +3,7 @@ import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
 import Score from './Score';
+import Pause from './Pause';
 
 export default class Game {
 
@@ -24,7 +25,8 @@ export default class Game {
 			this.boardGap,
 			((this.height - this.paddleHeight) / 2),
 			KEYS.a,
-			KEYS.z
+			KEYS.z,
+			'player1'
 		);
 
 		this.player2 = new Paddle(
@@ -34,13 +36,14 @@ export default class Game {
 			(this.width-this.paddleWidth-this.boardGap),
 			((this.height - this.paddleHeight) / 2),
 			KEYS.up,
-			KEYS.down
+			KEYS.down,
+			'player2'
 		);
 
 		document.addEventListener('keydown', event => {
       switch(event.key) {
         case KEYS.spaceBar:
-          this.pause = !this.pause;
+					this.pause = !this.pause;
           break;
       }
 		});
@@ -50,15 +53,18 @@ export default class Game {
 
 		this.ball = new Ball(8, this.width, this.height);
 		// this.ball2 = new Ball(8, this.width, this.height); -- adding a second ball
+
+		this.pauseScreen = new Pause(this.width, this.height);
 	
 		// Other code goes here...
 	}
 
 	render() {
 
-		if(this.pause) {
-      return;
-		}
+		// if(this.pause) {
+		// 	this.pauseScreen.render(svg);
+    //   return;
+		// }
 		
 		this.gameElement.innerHTML = '';
 
@@ -66,17 +72,27 @@ export default class Game {
 		svg.setAttributeNS(null, 'width', this.width);
 		svg.setAttributeNS(null, 'height', this.height);
 		svg.setAttributeNS(null, 'viewBox', `0 0 ${this.width} ${this.height}`);
+		svg.setAttributeNS(null, 'class', 'gamespace')
 
 
 		this.board.render(svg);
+
+
 		this.player1.render(svg);
 		this.player2.render(svg);
-		this.ball.render(svg, this.player1, this.player2);
+		
 		// this.ball2.render(svg, this.player1, this.player2); -- adding a second ball
 		this.gameElement.appendChild(svg);
 
 		this.score1.render(svg, this.player1.score);
 		this.score2.render(svg, this.player2.score);
+
+		if(this.pause) {
+			this.pauseScreen.render(svg);
+      return;
+		}
+
+		this.ball.render(svg, this.player1, this.player2);
 	}
 
 }

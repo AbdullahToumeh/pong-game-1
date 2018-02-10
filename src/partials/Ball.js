@@ -9,7 +9,7 @@ export default class Ball {
 
     this.reset();
 
-    this.ping = new Audio('public/sounds/pong-01.wav');
+    this.ping = new Audio('public/sounds/cat-meow.m4a');
   }
 
   reset() {
