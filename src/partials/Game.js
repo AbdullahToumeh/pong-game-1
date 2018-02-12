@@ -53,7 +53,7 @@ export default class Game {
 		this.score2 = new Score(this.width / 2 + 30, 30, 30);
 
 		this.ball = new Ball(8, this.width, this.height);
-		// this.ball2 = new Ball(8, this.width, this.height); -- adding a second ball
+		this.ball2 = new Ball(13, this.width, this.height); // adding a second ball
 
 		this.pauseScreen = new Pause(this.width, this.height);
 	
@@ -90,9 +90,13 @@ export default class Game {
 
 		if(this.pause) {
 			this.pauseScreen.render(svg);
-      return;
+			return
 		}
 
+		if(this.player1.score >= 5 || this.player2.score >= 5) {
+			this.ball2.renderCatBall(svg, this.player1, this.player2);
+			return
+		}
 		this.ball.render(svg, this.player1, this.player2);
 	}
 
