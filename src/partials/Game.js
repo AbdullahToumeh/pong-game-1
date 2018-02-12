@@ -17,6 +17,7 @@ export default class Game {
 		this.paddleWidth = 8;
 		this.paddleHeight = 56;
 		this.boardGap = 10;
+		this.pause = true;
 
 		this.player1 = new Paddle(
 			this.height,

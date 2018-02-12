@@ -10,6 +10,8 @@ export default class Ball {
     this.reset();
 
     this.ping = new Audio('public/sounds/cat-meow.m4a');
+
+    this.hiss = new Audio('public/sounds/cat-hissing-sound.mp3');
   }
 
   reset() {
@@ -27,7 +29,7 @@ export default class Ball {
 
   goal(player) {
     player.score++;
-    console.log(player.score);
+    this.hiss.play();
     this.reset();
   }
 
@@ -84,7 +86,7 @@ export default class Ball {
 
     //draw the ball
     let circle = document.createElementNS(SVG_NS, 'circle');
-    circle.setAttributeNS(null, 'fill', 'skyblue');
+    circle.setAttributeNS(null, 'fill', '#36c2f3');
     circle.setAttributeNS(null, 'cx', this.x);
     circle.setAttributeNS(null, 'cy', this.y);
     circle.setAttributeNS(null, 'r', this.radius);
