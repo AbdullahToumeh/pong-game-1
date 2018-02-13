@@ -4,6 +4,7 @@ import Paddle from './Paddle';
 import Ball from './Ball';
 import Score from './Score';
 import Pause from './Pause';
+import Win from './Win';
 
 export default class Game {
 
@@ -56,16 +57,14 @@ export default class Game {
 		this.ball2 = new Ball(13, this.width, this.height); // adding a second ball
 
 		this.pauseScreen = new Pause(this.width, this.height);
-	
-		// Other code goes here...
+
+		this.winScreen = new Win(this.width, this.height);
+
+		this.winAudio = new Audio('public/sounds/nyan-cat-song.m4a');
+
 	}
 
 	render() {
-
-		// if(this.pause) {
-		// 	this.pauseScreen.render(svg);
-    //   return;
-		// }
 		
 		this.gameElement.innerHTML = '';
 
@@ -88,6 +87,26 @@ export default class Game {
 		this.score1.render(svg, this.player1.score);
 		this.score2.render(svg, this.player2.score);
 
+		if(this.player1.score === 10 || this.player2.score === 10) {
+			this.winAudio.play();
+			this.winScreen.render(svg);
+			this.ball.reset();
+
+			document.addEventListener('keydown', event2 => {
+				switch(event2.key) {
+					case KEYS.enter:
+					this.player1.score = 0;
+					this.player2.score = 0;
+					this.winAudio.pause();
+					this.winAudio.currentTime = 0;
+					break;
+				}
+			})
+			
+			return
+			
+		}
+
 		if(this.pause) {
 			this.pauseScreen.render(svg);
 			return
@@ -97,6 +116,8 @@ export default class Game {
 			this.ball2.renderCatBall(svg, this.player1, this.player2);
 			return
 		}
+
+		
 		this.ball.render(svg, this.player1, this.player2);
 	}
 
