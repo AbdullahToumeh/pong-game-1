@@ -1,6 +1,8 @@
 # Pong Game
 
-A basic pong game using SVGs.
+A basic kitten themed pong game using SVGs. Some features include sound effects, ball change to a kitten ball at point 5, and winner at point 10. 
+
+![Sample of game](public/images/pong-gif.gif)
 
 ## Setup
 
@@ -25,3 +27,14 @@ A basic pong game using SVGs.
 **Player 2:**
 * ▲ : up
 * ▼: down
+
+SPACE : pause
+
+## Technologies Used
+
+Entire game coded using object oriented javascript. 
+Utilized webpack for compiling the css and javascript.
+
+## License
+
+[MIT](LICENSE)
