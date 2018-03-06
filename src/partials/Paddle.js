@@ -20,17 +20,6 @@ export default class Paddle {
     document.addEventListener('keyup', event => {
       this.keyState[event.key || event.which] = false;
     }, true);
-
-    // document.addEventListener('keydown', event => {
-    //   switch (event.key) {
-    //     case up:
-    //       this.up();
-    //       break;
-    //     case down:
-    //       this.down();
-    //       break;
-    //   }
-    // });
   }
   
   //getting the maxiumum number between 0 (top of the board) and the current position of the paddle

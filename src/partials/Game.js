@@ -81,7 +81,6 @@ export default class Game {
 		this.player1.render(svg);
 		this.player2.render(svg);
 		
-		// this.ball2.render(svg, this.player1, this.player2); -- adding a second ball
 		this.gameElement.appendChild(svg);
 
 		this.score1.render(svg, this.player1.score);

@@ -30,6 +30,15 @@ A basic kitten themed pong game using SVGs. Some features include sound effects,
 
 SPACE : pause
 
+## Key Features
+
+* Ball changes to kitten ball when either player gets to point 5.
+* Paddles meow when hit, and hiss when the ball goes offscreen.
+* Winner is declared at point 10.
+* Nyan cat theme song plays when a player wins.
+* Spacebar to pause the game at any time, and display instructions.
+
+
 ## Technologies Used
 
 Entire game coded using object oriented javascript. 
